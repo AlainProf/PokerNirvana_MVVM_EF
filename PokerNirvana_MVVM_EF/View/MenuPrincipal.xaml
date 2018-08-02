@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="PokerNirvana_MVVM_EF.View.MenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="400" Width="300">
+    <Canvas >
+
+        <!--<Button Name="btnInfoMembre" Canvas.Top="0" Click="InformationMembre">Info membre</Button>
+        <Button Name="btnConnexion" Canvas.Top="40" Click="Connexion">Connexion</Button>-->
+        <Button Name="btnCreationBDParEntity" Canvas.Top="80" Click="CreationBDParEntity">insere 6 joueurs (EF)</Button>
+        <Button Name="btnCreationTournoisParties" Canvas.Top="120" Click="CreationTournoisParties">Création d'une partie (attention ne crée pas les joueurs)</Button>
+        <Button Name="btnChargerPartie1" Canvas.Top="160" Click="ChargerPartie1">Chargement Partie 1</Button>
+        <!--<Button Name="btnReprise" Canvas.Top="120" Click="Reprise">Reprise</Button>-->
+        <!--<Button Name="btnStatistiques" Canvas.Top="160" Click="Statistiques">Statistiques</Button>-->
+        <!--<Button Name="btnJouer" Canvas.Top="200" Click="Jouer">Jouer</Button>
+        <Button Name="btnPartieEnCours" Canvas.Top="240" Click="PartieEnCours">Partie et tournois en cours</Button>-->
+        <!--<Button Name="btnPreparerBD" Canvas.Top="280" Click="PrepareBD">3 joueurs 2 all in</Button>-->
+        <Button Name="btnTruncatePrim" Canvas.Top="320" Click="TruncatePrimitif">Vider Primitif BD</Button>
+        <Button Name="btnTruncate" Canvas.Top="360" Click="Truncate">Vider BD</Button>
+    </Canvas>
+</UserControl>

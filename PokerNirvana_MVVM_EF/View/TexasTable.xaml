@@ -1,0 +1,344 @@
+﻿<UserControl x:Class="PokerNirvana_MVVM_EF.View.TexasTable"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="672" Width="889">
+
+    <UserControl.Resources>
+    <Style x:Key="styleNom" TargetType="TextBlock">
+        <Setter Property="Control.FontSize" Value="16"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="Gray"/>
+    </Style>
+    <Style x:Key="styleCapital" TargetType="TextBlock">
+        <Setter Property="Control.FontSize" Value="14"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Background" Value="Gold"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="styleMise" TargetType="TextBlock">
+        <Setter Property="Control.FontSize" Value="10"/>
+        <Setter Property="Control.FontWeight" Value="Bold"/>
+        <Setter Property="Background" Value="Yellow"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="styleGridJoueur" TargetType="Grid">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="120"/>
+        <Setter Property="Background" Value="Black"/>
+    </Style>
+</UserControl.Resources>
+
+<Canvas Name="MasterCanvas" Background="Green" HorizontalAlignment="Left" Width="869"  Height="647" VerticalAlignment="Top" Margin="0,0,0,-6">
+    <TextBlock Name="TB_Titre" Text="{Binding Titre}"
+                   HorizontalAlignment="Center"
+                   Canvas.Top="0" Canvas.Left="250" Width="619"
+                   FontSize="20" FontFamily="Comic Sans MS"     
+                   Background="Black" Foreground="Aqua"/>
+   
+        <TextBlock Name ="TB_Historique" Text="{Binding MsgHistorique}"
+                   Canvas.Top="0" Width="250" Height="455"
+                   Background="Black" FontSize="12" Foreground="Yellow"/>
+    <Canvas Canvas.Top="455" Canvas.Left="0" Width="250" Height="192"
+                   Background="DarkGray">
+        <TextBlock Name="TB_Options" Text="{Binding TitreOptions}" FontSize="18"/>
+        <TextBlock Name="TB_GagnantMain" Text="{Binding MsgGagnantMain}" Canvas.Left="13" Canvas.Top="25"/>
+            <Button Name="bout_Suivre" Content="SUIVRE" Command="{Binding cmdSuivre}" Canvas.Left="10" Canvas.Top="7" Width="90"/>
+            <Button Name="bout_Relancer" Content="RELANCER DE:" Command="{Binding cmdRelancer}" Width="93" Canvas.Left="10" Canvas.Top="35" />
+            <ComboBox Name="CB_ValRelance" Text="{Binding ValRelanceTxt}" Width="52" Canvas.Left="110" Canvas.Top="35" Height="20"/>
+            <Button Name="bout_Abandonner" Content="ABANDONNER" Command="{Binding cmdAbandonner}" Canvas.Left="10" Canvas.Top="60" />
+            <Button Name="bout_Gestion" Content="Gestion des parties" Canvas.Left="10" Canvas.Top="160"/>
+            <Button Name="bout_Distribuer" Content="Passer la prochaine main" Command="{Binding cmdDistribuer}" Canvas.Left="10" Canvas.Top="107"/>
+        <TextBlock Name="TB_MsgAttente" Text="{Binding MsgAttente}" FontSize="12" Canvas.Left="13" Canvas.Top="46"/>
+    </Canvas>
+
+    <Canvas Name="J_A" DataContext="{Binding JoueurA}">
+            <TextBlock Text="{Binding NomJoueur}" Foreground="Black" 
+                   Canvas.Top="175" 
+                   Canvas.Left="260" 
+                   Width="75"
+                   Height="20"
+                   Style="{StaticResource styleNom}" />
+            <Image Source="{Binding ImagePokerman}"
+                   Canvas.Top="200" 
+                   Canvas.Left="255" 
+                   Width="60"
+                   Stretch="Fill" Height="75"/>
+        <TextBlock Text="{Binding Capital}"  
+                   Canvas.Top="275" 
+                   Canvas.Left="255" 
+                   Width="30" 
+                   Height="20"
+                   Style="{StaticResource styleCapital}"/>
+        <TextBlock Text="Mise:"
+                   Canvas.Top="200" 
+                   Canvas.Left="315" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+        <TextBlock Text="{Binding Engagement}"
+                   Canvas.Top="220" 
+                   Canvas.Left="315" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+            <Image Source="{Binding ImageCarte0}"
+               Canvas.Top="240" 
+               Canvas.Left="315" 
+               Width="50"
+               Stretch="Fill"/>
+        <Image Source="{Binding ImageCarte1}"
+               Canvas.Top="240" 
+               Canvas.Left="340" 
+               Width="50"
+               Stretch="Fill"/>
+         
+          
+    </Canvas>
+
+     <Canvas Name="J_B" DataContext="{Binding JoueurB}">
+            <TextBlock Text="{Binding NomJoueur}" Foreground="Black" 
+                   Canvas.Top="53" 
+                   Canvas.Left="470" 
+                   Width="75"
+                   Height="20"
+                   Style="{StaticResource styleNom}" />
+            <Image Source="{Binding ImagePokerman }"
+                   Canvas.Top="78" 
+                   Canvas.Left="470" 
+                   Width="60"
+                   Stretch="Fill" Height="72"/>
+        <TextBlock Text="{Binding Capital}"  
+                   Canvas.Top="150" 
+                   Canvas.Left="470" 
+                   Width="30" 
+                   Height="20"
+                   Style="{StaticResource styleCapital}"/>
+        <TextBlock Text="Mise:"
+                   Canvas.Top="75" 
+                   Canvas.Left="530" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+        <TextBlock Text="{Binding Engagement}"
+                   Canvas.Top="95" 
+                   Canvas.Left="530" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+            <Image Source="{Binding ImageCarte0}"
+               Canvas.Top="107" 
+               Canvas.Left="530" 
+               Width="50"
+               Stretch="Fill"/>
+            <Image Source="{Binding ImageCarte1}"
+               Canvas.Top="107" 
+               Canvas.Left="550" 
+               Width="50"
+               Stretch="Fill"/>
+
+        </Canvas>
+
+        <Canvas Name="J_C" DataContext="{Binding JoueurC}">
+            <TextBlock Text="{Binding NomJoueur}" Foreground="Black" 
+                   Canvas.Top="175" 
+                   Canvas.Left="695" 
+                   Width="75"
+                   Height="20"
+                   Style="{StaticResource styleNom}" />
+            <Image Source="{Binding ImagePokerman}"
+                   Canvas.Top="200" 
+                   Canvas.Left="695" 
+                   Width="60"
+                   Stretch="Fill" Height="75"/>
+        <TextBlock Text="{Binding Capital}"  
+                   Canvas.Top="275" 
+                   Canvas.Left="695" 
+                   Width="30" 
+                   Height="20"
+                   Style="{StaticResource styleCapital}"/>
+        <TextBlock Text="Mise:"
+                   Canvas.Top="203" 
+                   Canvas.Left="755" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+        <TextBlock Text="{Binding Engagement}"
+                   Canvas.Top="223" 
+                   Canvas.Left="755" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+            <Image Source="{Binding ImageCarte0}"
+               Canvas.Top="240" 
+               Canvas.Left="750" 
+               Width="50"
+               Stretch="Fill"/>
+            <Image Source="{Binding ImageCarte1}"
+               Canvas.Top="240" 
+               Canvas.Left="780" 
+               Width="50"
+               Stretch="Fill"/>
+
+        </Canvas>
+
+        <Canvas Name="J_D" DataContext="{Binding JoueurD}">
+            <TextBlock Text="{Binding NomJoueur}" Foreground="Black" 
+                   Canvas.Top="355" 
+                   Canvas.Left="710" 
+                   Width="75"
+                   Height="20"
+                   Style="{StaticResource styleNom}" />
+            <Image Source="{Binding ImagePokerman}"
+                   Canvas.Top="380" 
+                   Canvas.Left="710" 
+                   Width="60"
+                   Stretch="Fill" Height="75"/>
+        <TextBlock Text="{Binding Capital}"  
+                   Canvas.Top="455" 
+                   Canvas.Left="710" 
+                   Width="30" 
+                   Height="20"
+                   Style="{StaticResource styleCapital}"/>
+        <TextBlock Text="Mise:"
+                   Canvas.Top="380" 
+                   Canvas.Left="770" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+        <TextBlock Text="{Binding Engagement}"
+                   Canvas.Top="400" 
+                   Canvas.Left="770" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+            <Image Source="{Binding ImageCarte0}"
+               Canvas.Top="420" 
+               Canvas.Left="770" 
+               Width="50"
+               Stretch="Fill"/>
+            <Image Source="{Binding ImageCarte1}"
+               Canvas.Top="420" 
+               Canvas.Left="790" 
+               Width="50"
+               Stretch="Fill"/>
+        </Canvas>
+
+        <Canvas Name="J_E" DataContext="{Binding JoueurE}">
+            <TextBlock Text="{Binding NomJoueur}" Foreground="Black" 
+                   Canvas.Top="480" 
+                   Canvas.Left="475" 
+                   Width="75"
+                   Height="20"
+                   Style="{StaticResource styleNom}" />
+        <Image Source="{Binding ImagePokerman}"
+                   Canvas.Top="505" 
+                   Canvas.Left="470" 
+                   Width="60"
+                   Stretch="Fill" Height="75"/>
+        <TextBlock Text="{Binding Capital}"  
+                   Canvas.Top="580" 
+                   Canvas.Left="470" 
+                   Width="30" 
+                   Height="20"
+                   Style="{StaticResource styleCapital}"/>
+        <TextBlock Text="Mise:"
+                   Canvas.Top="505" 
+                   Canvas.Left="530" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+        <TextBlock Text="{Binding Engagement}"
+                   Canvas.Top="525" 
+                   Canvas.Left="530" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+            <Image Source="{Binding ImageCarte0}"
+               Canvas.Top="545" 
+               Canvas.Left="530" 
+               Width="50"
+               Stretch="Fill"/>
+            <Image Source="{Binding ImageCarte1}"
+               Canvas.Top="545" 
+               Canvas.Left="555" 
+               Width="50"
+               Stretch="Fill"/>
+        </Canvas>
+
+        <Canvas Name="J_F" DataContext="{Binding JoueurF}">
+        <TextBlock Text="{Binding NomJoueur}" Foreground="Black" 
+                   Canvas.Top="360" 
+                   Canvas.Left="260" 
+                   Width="75"
+                   Height="20"
+                   Style="{StaticResource styleNom}" />
+        <Image Source="{Binding ImagePokerman}"
+                   Canvas.Top="385" 
+                   Canvas.Left="255" 
+                   Width="60"
+                   Stretch="Fill" Height="75"/>
+        <TextBlock Text="{Binding Capital}"  
+                   Canvas.Top="460" 
+                   Canvas.Left="255" 
+                   Width="30" 
+                   Height="20"
+                   Style="{StaticResource styleCapital}"/>
+        <TextBlock Text="Mise:"
+                   Canvas.Top="385" 
+                   Canvas.Left="315" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+        <TextBlock Text="{Binding Engagement}"
+                   Canvas.Top="405" 
+                   Canvas.Left="315" 
+                   Width="35"
+                   Height="20" 
+                   Style="{StaticResource styleMise}"/>
+            <Image Source="{Binding ImageCarte0}"
+               Canvas.Top="435" 
+               Canvas.Left="315" 
+               Width="50"
+               Stretch="Fill"/>
+            <Image Source="{Binding ImageCarte1}"
+               Canvas.Top="435" 
+               Canvas.Left="340" 
+               Width="50"
+               Stretch="Fill"/>
+        </Canvas>
+
+        <Canvas Name="CartesPubliques" DataContext="{Binding CartesCommunes}">
+            <Image Name="CarteFlop0" Source="{Binding ImageFlop0}"
+               Canvas.Top="310" Canvas.Left="435" Width="50"
+               Stretch="Fill"/>
+            <Image Name="CarteFlop1"  Source="{Binding ImageFlop1}"
+               Canvas.Top="310" Canvas.Left="460" Width="50"
+               Stretch="Fill" />
+            <Image Name="CarteFlop2"  Source="{Binding ImageFlop2}"
+               Canvas.Top="310" Canvas.Left="485" Width="50"
+               Stretch="Fill"/>
+
+            <Image Name="CarteTurn"  Source="{Binding ImageTurn}"
+              Canvas.Top="310" Canvas.Left="545" Width="50"
+              Stretch="Fill"/>
+            <Image Name="CarteRiver"  Source="{Binding ImageRiver}"
+               Canvas.Top="310" Canvas.Left="610" Width="50"
+               Stretch="Fill" RenderTransformOrigin="0.4,0.882"/>
+        </Canvas>
+       
+    <Ellipse Name="Bouton_A" Fill="Aqua" Height="28"  Canvas.Left="360" Stroke="Black" Canvas.Top="200" Width="31"/>
+    <Ellipse Name="Bouton_B" Fill="Aqua" Height="28"  Canvas.Left="570" Stroke="Black" Canvas.Top="70" Width="31" RenderTransformOrigin="0.323,0.643"/>
+    <Ellipse Name="Bouton_C" Fill="Aqua" Height="28"  Canvas.Left="804" Stroke="Black" Canvas.Top="200" Width="31"/>
+    <Ellipse Name="Bouton_D" Fill="Aqua" Height="28"  Canvas.Left="814" Stroke="Black" Canvas.Top="382" Width="31"/>
+    <Ellipse Name="Bouton_E" Fill="Aqua" Height="28"  Canvas.Left="570" Stroke="Black" Canvas.Top="502" Width="31" RenderTransformOrigin="-0.484,1.357"/>
+    <Ellipse Name="Bouton_F" Fill="Aqua" Height="28"  Canvas.Left="360" Stroke="Black" Canvas.Top="390" Width="31"/>
+
+</Canvas>
+
+
+</UserControl>
+    

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3AA3AA8-7D57-4C29-98FC-945B6C8FDFB8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PokerNirvana_MVVM_EF</RootNamespace>
+    <AssemblyName>PokerNirvana_MVVM_EF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.10.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.10.7\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.10.7\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Model\CartesPubliques.cs" />
+    <Compile Include="Model\Carte.cs" />
+    <Compile Include="Model\Croupier.cs" />
+    <Compile Include="Model\Gestionnaire.cs" />
+    <Compile Include="Model\MainDeJoueur.cs" />
+    <Compile Include="Model\Paquet.cs" />
+    <Compile Include="TrousseGlobale.cs" />
+    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\CreerTournoisPartiesViewModel.cs" />
+    <Compile Include="ViewModel\DataAccess\BD_primitive.cs" />
+    <Compile Include="ViewModel\DataAccess\NirvanaContext.cs" />
+    <Compile Include="ViewModel\Service\IApplicationService.cs" />
+    <Compile Include="ViewModel\TexasTableViewModel.cs" />
+    <Compile Include="View\CreerTournoisParties.xaml.cs" />
+    <Compile Include="View\MenuPrincipal.xaml.cs">
+      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TexasTable.xaml.cs" />
+    <Page Include="Principale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Etape.cs" />
+    <Compile Include="Model\Historique.cs" />
+    <Compile Include="Model\Joueur.cs" />
+    <Compile Include="Model\JoueurPartie.cs" />
+    <Compile Include="Model\Main.cs" />
+    <Compile Include="Model\Partie.cs" />
+    <Compile Include="Model\TourParole.cs" />
+    <Compile Include="Principale.xaml.cs">
+      <DependentUpon>Principale.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\CreerTournoisParties.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MenuPrincipal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TexasTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\aProposIcon.png" />
+    <Resource Include="View\Images\HelpIcon.png" />
+    <Resource Include="View\Images\notifIcon.png" />
+    <Resource Include="View\Images\paramIcon.png" />
+    <Resource Include="View\Images\retour.png" />
+    <EmbeddedResource Include="View\Images\table.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\abandonner.jpg" />
+    <Resource Include="View\Images\alain.jpg" />
+    <Resource Include="View\Images\allin.jpg" />
+    <Resource Include="View\Images\antoine.jpg" />
+    <Resource Include="View\Images\cedric.jpg" />
+    <Resource Include="View\Images\certs.jpg" />
+    <Resource Include="View\Images\cheen.jpg" />
+    <Resource Include="View\Images\francisD.jpg" />
+    <Resource Include="View\Images\francisH.jpg" />
+    <Resource Include="View\Images\gos.jpg" />
+    <Resource Include="View\Images\inconnu.jpg" />
+    <Resource Include="View\Images\jeffrey.jpg" />
+    <Resource Include="View\Images\k.jpg" />
+    <Resource Include="View\Images\karine.jpg" />
+    <Resource Include="View\Images\maxh.jpg" />
+    <Resource Include="View\Images\maxr.jpg" />
+    <Resource Include="View\Images\mort.jpg" />
+    <Resource Include="View\Images\philippe.jpg" />
+    <Resource Include="View\Images\pough.jpg" />
+    <Resource Include="View\Images\simon.jpg" />
+    <Resource Include="View\Images\speed.jpg" />
+    <Resource Include="View\Images\steeven.jpg" />
+    <Resource Include="View\Images\tristan.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\Cardz\carreau_as.gif" />
+    <Resource Include="View\Images\Cardz\carreau_cinq.gif" />
+    <Resource Include="View\Images\Cardz\carreau_deux.gif" />
+    <Resource Include="View\Images\Cardz\carreau_dix.gif" />
+    <Resource Include="View\Images\Cardz\carreau_huit.gif" />
+    <Resource Include="View\Images\Cardz\carreau_neuf.gif" />
+    <Resource Include="View\Images\Cardz\carreau_quatre.gif" />
+    <Resource Include="View\Images\Cardz\carreau_reine.gif" />
+    <Resource Include="View\Images\Cardz\carreau_roi.gif" />
+    <Resource Include="View\Images\Cardz\carreau_sept.gif" />
+    <Resource Include="View\Images\Cardz\carreau_six.gif" />
+    <Resource Include="View\Images\Cardz\carreau_trois.gif" />
+    <Resource Include="View\Images\Cardz\carreau_valet.gif" />
+    <Resource Include="View\Images\Cardz\coeur_as.gif" />
+    <Resource Include="View\Images\Cardz\coeur_cinq.gif" />
+    <Resource Include="View\Images\Cardz\coeur_deux.gif" />
+    <Resource Include="View\Images\Cardz\coeur_dix.gif" />
+    <Resource Include="View\Images\Cardz\coeur_huit.gif" />
+    <Resource Include="View\Images\Cardz\coeur_neuf.gif" />
+    <Resource Include="View\Images\Cardz\coeur_quatre.gif" />
+    <Resource Include="View\Images\Cardz\coeur_reine.gif" />
+    <Resource Include="View\Images\Cardz\coeur_roi.gif" />
+    <Resource Include="View\Images\Cardz\coeur_sept.gif" />
+    <Resource Include="View\Images\Cardz\coeur_six.gif" />
+    <Resource Include="View\Images\Cardz\coeur_trois.gif" />
+    <Resource Include="View\Images\Cardz\coeur_valet.gif" />
+    <Resource Include="View\Images\Cardz\endos.gif" />
+    <Resource Include="View\Images\Cardz\pique_as.gif" />
+    <Resource Include="View\Images\Cardz\pique_cinq.gif" />
+    <Resource Include="View\Images\Cardz\pique_deux.gif" />
+    <Resource Include="View\Images\Cardz\pique_dix.gif" />
+    <Resource Include="View\Images\Cardz\pique_huit.gif" />
+    <Resource Include="View\Images\Cardz\pique_neuf.gif" />
+    <Resource Include="View\Images\Cardz\pique_quatre.gif" />
+    <Resource Include="View\Images\Cardz\pique_reine.gif" />
+    <Resource Include="View\Images\Cardz\pique_roi.gif" />
+    <Resource Include="View\Images\Cardz\pique_sept.gif" />
+    <Resource Include="View\Images\Cardz\pique_six.gif" />
+    <Resource Include="View\Images\Cardz\pique_trois.gif" />
+    <Resource Include="View\Images\Cardz\pique_valet.gif" />
+    <Resource Include="View\Images\Cardz\trefle_as.gif" />
+    <Resource Include="View\Images\Cardz\trefle_cinq.gif" />
+    <Resource Include="View\Images\Cardz\trefle_deux.gif" />
+    <Resource Include="View\Images\Cardz\trefle_dix.gif" />
+    <Resource Include="View\Images\Cardz\trefle_huit.gif" />
+    <Resource Include="View\Images\Cardz\trefle_neuf.gif" />
+    <Resource Include="View\Images\Cardz\trefle_quatre.gif" />
+    <Resource Include="View\Images\Cardz\trefle_reine.gif" />
+    <Resource Include="View\Images\Cardz\trefle_roi.gif" />
+    <Resource Include="View\Images\Cardz\trefle_sept.gif" />
+    <Resource Include="View\Images\Cardz\trefle_six.gif" />
+    <Resource Include="View\Images\Cardz\trefle_trois.gif" />
+    <Resource Include="View\Images\Cardz\trefle_valet.gif" />
+    <Resource Include="View\Images\Cardz\vide_vide.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

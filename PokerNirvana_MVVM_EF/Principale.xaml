@@ -1,0 +1,89 @@
+﻿<Window x:Class="PokerNirvana_MVVM_EF.Principale"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nirvana"
+		ResizeMode="CanMinimize"
+		Closing="Window_Closing"
+        Height="672" Width="889">
+    <!-- KeyDown="Window_KeyDown"-->
+
+    <Grid>
+
+        <!--<Grid.Background>
+            <ImageBrush Opacity="0.3" ImageSource="View/Images/table.jpg"/>
+        </Grid.Background>-->
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <DockPanel>
+            <ToolBar Width="600" HorizontalAlignment="Center">
+                <Button Name="btnRetour" VerticalAlignment="Bottom" Click="btnRetour_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/retour.PNG"/>
+                        <TextBlock Text="Retour" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+                <Button Name="btnCerts" Click="btnCerts_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/HelpIcon.PNG"/>
+                        <TextBlock Text="Certs" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+                <Button Name="btnCheen" Click="btnCheen_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/HelpIcon.PNG"/>
+                        <TextBlock Text="Cheen" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+
+                <Button Name="btnGos" Click="btnGos_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/HelpIcon.PNG"/>
+                        <TextBlock Text="Gos" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+                <Button Name="btnK" Click="btnK_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/HelpIcon.PNG"/>
+                        <TextBlock Text="K" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+                <Button Name="btnPough" Click="btnPough_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/HelpIcon.PNG"/>
+                        <TextBlock Text="Pough" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+                <Button Name="btnSpeed" Click="btnSpeed_Click">
+                    <DockPanel>
+                        <Image Source="View/Images/HelpIcon.PNG"/>
+                        <TextBlock Text="Speed" FontSize="20" FontFamily="Berlin"/>
+                    </DockPanel>
+                </Button>
+                <!--<Image ToolTipService.ShowDuration="12000" Width="24" Height="24" Margin="2" Source="View/Images/notifIcon.png" >
+                    <Image.ToolTip>
+                        <ToolTip StaysOpen="True" HorizontalOffset="10"
+                                    ToolTipService.InitialShowDelay="0" ToolTipService.BetweenShowDelay="0">
+                            <TextBlock>Nouvelle Notification</TextBlock>
+                        </ToolTip>
+                    </Image.ToolTip>
+                </Image>-->
+                <TextBlock Name="nbrNotif" Text="" Foreground="DarkGreen"/>
+                <ToolBar Name="toolBarNotif" Width="15">
+                    <!--<Button Name="btnNotification" VerticalAlignment="Top">-->
+
+
+
+                    <!--</Button>-->
+                </ToolBar>
+            </ToolBar>
+        </DockPanel>
+
+        <ContentPresenter Grid.Row="1" Name="presenteurContenu" />
+
+    </Grid>
+
+</Window>
