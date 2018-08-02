@@ -6,7 +6,7 @@
 
         <!--<Button Name="btnInfoMembre" Canvas.Top="0" Click="InformationMembre">Info membre</Button>
         <Button Name="btnConnexion" Canvas.Top="40" Click="Connexion">Connexion</Button>-->
-        <Button Name="btnCreationBDParEntity" Canvas.Top="80" Click="CreationBDParEntity">insere 6 joueurs (EF)</Button>
+        <Button Name="btnCreationBDParEntity" Canvas.Top="80" Click="CreationBDParEntity">Insère 6 joueurs (EF)</Button>
         <Button Name="btnCreationTournoisParties" Canvas.Top="120" Click="CreationTournoisParties">Création d'une partie (attention ne crée pas les joueurs)</Button>
         <Button Name="btnChargerPartie1" Canvas.Top="160" Click="ChargerPartie1">Chargement Partie 1</Button>
         <!--<Button Name="btnReprise" Canvas.Top="120" Click="Reprise">Reprise</Button>-->
