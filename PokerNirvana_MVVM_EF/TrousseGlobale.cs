@@ -31,7 +31,7 @@ namespace PokerNirvana_MVVM_EF
     {
         public TG()
         {
-//            Database.SetInitializer<NirvanaContext>(new DropCreateDatabaseAlways<NirvanaContext>());
+         //   Database.SetInitializer<NirvanaContext>(new DropCreateDatabaseAlways<NirvanaContext>());
             Database.SetInitializer<NirvanaContext>(new CreateDatabaseIfNotExists<NirvanaContext>());
             NirvContext = new NirvanaContext();
             PA = new Partie();
@@ -91,9 +91,11 @@ namespace PokerNirvana_MVVM_EF
         
         public static int GetIdxEtape()
         {
-            string etape = PA.NomEtape; 
-            ICollection<Etape> lstEtape = PA.Mains.ElementAt<Main>(PA.NumMainCourante-1).Etapes;
+            string etape = PA.NomEtape;
+            if (PA.MainCourante == null)
+                return 0;
 
+            ICollection<Etape> lstEtape = PA.MainCourante.Etapes;
             return lstEtape.Count - 1;
            
         }

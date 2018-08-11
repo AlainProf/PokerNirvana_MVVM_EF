@@ -50,9 +50,9 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             TableCourante = TT;
             cmdAbandonner = new Command(Abandonner);
             
-            //cmdGratos     = new Command(Suivre);
-            //cmdSuivre     = new Command(Suivre);
-            //cmdRelancer   = new Command(Relancer);
+            cmdGratos     = new Command(Suivre);
+            cmdSuivre     = new Command(Suivre);
+            cmdRelancer   = new Command(Relancer);
             //cmdDistribuer = new Command(GestionDistribuer);
 
             //if (PA.NomJoueurLogue == null)
@@ -63,13 +63,11 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             //    NouvellePartie = false;
             //    TG.SRV.Incarne<iParties_EF_SRV>().RecupUnePA(1);
             Titre = "PokerNirvanus, Partie " + TG.PA.NumPartie + ", main " + TG.PA.NumMainCourante + ", Joueur:" + TG.PA.NomJoueurLogue;
-            //"" + PA.NumPartie + ", main " + PA.MainCourante + ". Joueur: " + PA.NomJoueurLogue;
-
-            //    mainCourante = TG.SRV.Incarne<iMains_EF_SRV>().RecupUneMain();
-
+            
+            
             //    PA.Bouton = mainCourante.Bouton;
             //    PA.NomEtape = mainCourante.NomEtape;
-            //    PA.NiveauPourSuivre = mainCourante.NiveauPourSuivre;
+            //TG.PA.NiveauPourSuivre = mainCourante.NiveauPourSuivre;
 
 
             //    Etape etapeCourante = TG.SRV.Incarne<Etapes_EF_SRV>().RecupEtapeDuneMain();
@@ -106,7 +104,7 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             //        //PA.ProchainJoueur = PA.croupier.DetermineProchainJoueur("NOUVELLE_MAIN");
             //    }
 
-            Main mainTmp = TG.PA.Mains.ElementAt(0);
+            Main mainTmp = TG.PA.MainCourante;
 
             Carte c0 = new Carte((int)mainTmp.J0_C0_V, (int)mainTmp.J0_C0_S);
             Carte c1 = new Carte((int)mainTmp.J0_C1_V, (int)mainTmp.J0_C1_S);
@@ -114,9 +112,11 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             TG.PA.Joueurs[0].ImageCarte1 = c1.imgCarte;
             string dec = TG.PA.GetJoueurDecision(0);
             if (dec == "ABANDONNER")
-               TG.PA.Joueurs[0].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+                TG.PA.Joueurs[0].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+            else if (dec == "ALL_IN_SUIVRE" || dec == "ALL_IN_RELANCER")
+                TG.PA.Joueurs[0].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "allin.jpg"));
             else
-               TG.PA.Joueurs[0].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[0].NomJoueur + ".jpg"));
+                TG.PA.Joueurs[0].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[0].NomJoueur + ".jpg"));
             JoueurA = TG.PA.Joueurs[0];
 
             c0 = new Carte((int)mainTmp.J1_C0_V, (int)mainTmp.J1_C0_S);
@@ -126,6 +126,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             dec = TG.PA.GetJoueurDecision(1);
             if (dec == "ABANDONNER")
                 TG.PA.Joueurs[1].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+            else if (dec == "ALL_IN_SUIVRE" || dec == "ALL_IN_RELANCER")
+                TG.PA.Joueurs[1].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "allin.jpg"));
             else
                 TG.PA.Joueurs[1].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[1].NomJoueur + ".jpg"));
             JoueurB = TG.PA.Joueurs[1];
@@ -139,6 +141,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
                 dec = TG.PA.GetJoueurDecision(2);
                 if (dec == "ABANDONNER")
                     TG.PA.Joueurs[2].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+                else if (dec == "ALL_IN_SUIVRE" || dec == "ALL_IN_RELANCER")
+                    TG.PA.Joueurs[2].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "allin.jpg"));
                 else
                     TG.PA.Joueurs[2].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[2].NomJoueur + ".jpg"));
                 JoueurC = TG.PA.Joueurs[2];
@@ -153,6 +157,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
                 dec = TG.PA.GetJoueurDecision(3);
                 if (dec == "ABANDONNER")
                     TG.PA.Joueurs[3].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+                else if (dec == "ALL_IN_SUIVRE" || dec == "ALL_IN_RELANCER")
+                    TG.PA.Joueurs[3].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "allin.jpg"));
                 else
                     TG.PA.Joueurs[3].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[3].NomJoueur + ".jpg"));
                 JoueurD = TG.PA.Joueurs[3];
@@ -167,6 +173,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
                 dec = TG.PA.GetJoueurDecision(4);
                 if (dec == "ABANDONNER")
                     TG.PA.Joueurs[4].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+                else if (dec == "ALL_IN_SUIVRE" || dec == "ALL_IN_RELANCER")
+                    TG.PA.Joueurs[4].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "allin.jpg"));
                 else
                     TG.PA.Joueurs[4].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[4].NomJoueur + ".jpg"));
                 JoueurE = TG.PA.Joueurs[4];
@@ -181,6 +189,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
                 dec = TG.PA.GetJoueurDecision(5);
                 if (dec == "ABANDONNER")
                     TG.PA.Joueurs[5].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "abandonner.jpg"));
+                else if (dec == "ALL_IN_SUIVRE" || dec == "ALL_IN_RELANCER")
+                    TG.PA.Joueurs[5].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + "allin.jpg"));
                 else
                     TG.PA.Joueurs[5].ImagePokerman = new BitmapImage(new Uri(TG.PathImage + TG.PA.Joueurs[5].NomJoueur + ".jpg"));
                 JoueurF = TG.PA.Joueurs[5];
@@ -255,18 +265,77 @@ namespace PokerNirvana_MVVM_EF.ViewModel
         //-------------------------------------------
         private void AppliqueDecision()
         {
+            MsgHistorique = TG.RecupHistoriquePartie();
+            ConsequenceDeLaDecision("Texas");
+            TG.SRV.Incarne<IApplicationService>().ChangerVue(new TexasTable());
+        }
+
+        /*--------------------------------------------------------------
+        /
+        /   ConsequenceDeLaDecision()
+        /
+        /---------------------------------------------------------------*/
+        public void ConsequenceDeLaDecision(string From)
+        {
             string statutDeMise = TG.PA.getEtatDeLaMise();
 
-            switch(statutDeMise)
+            switch (statutDeMise)
             {
-                case "MISE_CONTINUE":
-                    TG.PA.zeCroupier = new Croupier();
-                    TG.PA.ProchainJoueur = TG.PA.zeCroupier.DetermineProchainJoueur("USUEL");
-                    break;
+               
                 case "MISE_TERMINEE_MAIN_TERMINEE_DOMINATION":
                     TG.PA.TraitementMainTerminee("DOMINATION");
                     break;
+                case ("MISE_PARALYSEE"):
+                    TG.PA.DetermineProchaineEtape();
+                    if (From != "RECUR")
+                    {
+                        TG.AjouteHistorique("Mise bloquée a une etape");
+                    }
+                    // Insertion de la prochaine Etape de mise de la main courante
+                    //TG.SRV.Incarne<Etapes_ADO_SRV>().InsereEtape();
+                    //Num_Tour = 1;
+
+                    if (TG.PA.NomEtape == "FLOP" || TG.PA.NomEtape == "TURN" || TG.PA.NomEtape == "RIVER")
+                    {
+                        ConsequenceDeLaDecision("RECUR");
+                        return;
+                    }
+                    if (TG.PA.NomEtape == "POST_RIVER")
+                    {
+                        TG.PA.TraitementMainTerminee("PARALYSIE");
+                    }
+                    break;
+              
+                case ("MAIN_TERMINEE_DEPARTAGE"):
+                    TG.PA.TraitementMainTerminee("DEPARTAGE");
+                    break;
+
+                case ("MISE_TERMINEE_MAIN_CONTINUE"):
+
+                    TG.PA.DetermineProchaineEtape();
+                    TG.AjouteHistorique("On passe à: " + TG.PA.NomEtape);
+                    //Insertion de la prochaine Etape de la main courante
+                    TG.PA.InsereEtape();
+                    break;
+
+                case ("MISE_CONTINUE"):
+                    if (TG.PA.tourComplete())
+                    {
+                        TG.PA.insereNouveauTour();
+                    }
+                    TG.PA.zeCroupier = new Croupier();
+                    TG.PA.ProchainJoueur = TG.PA.zeCroupier.DetermineProchainJoueur("USUEL");
+
+                    //tr("Mise continue: prochain: ProchainJoueur");
+                    //Msg = "A toi la parole.";
+                    //CreateCourriel("PokerNirvana: Partie Numero, main Numero_Main, étape Etape", Msg, Joueurs[ProchainJoueur], Config.Courriel);
+                    break;
+
+                default:
+                    break;
             }
+            TG.NirvContext.SaveChanges();
+            //TG.SRV.Incarne<IApplicationService>().ChangerVue(new TexasTable());
         }
 
         //-------------------------------------------
@@ -292,107 +361,172 @@ namespace PokerNirvana_MVVM_EF.ViewModel
         {
             TG.AjouteHistorique(TG.PA.Joueurs[TG.PA.JoueurLogue].NomJoueur + " abandonner");
             TG.PA.Joueurs[TG.PA.JoueurLogue].Decision = "ABANDONNER";
-            ////TG.NirvContext.SaveChanges();
-            //TourParole TP = TG.PA.MainCourante.EtapeCourante.TourCourant;
-            //Main mano = TG.PA.Mains.ElementAt<Main>(0);
-            //Etape step = mano.Etapes.ElementAt<Etape>(0);
-            //TourParole tp = step.ToursParole.ElementAt<TourParole>(0);
-
-            //.Etapes.ElementAt<Etape>(0).ToursParole.ElementAt<TourParole>(0);
+           
 
             int idxMain = TG.PA.NumMainCourante - 1;
             int idxEtape = TG.GetIdxEtape();
-            Main mainCourante = TG.PA.Mains.ElementAt(idxMain);
-            //int idxTP = mainCourante.Etapes.ElementAt(idxEtape).NumTourCourant;
-            int idxTP = 0;
+            
+            int idxTP = TG.PA.MainCourante.Etapes.ElementAt(idxEtape).NumTourCourant -1;
+           
             switch (TG.PA.JoueurLogue)
             {
                 case 0:
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J0 = DateTime.Now;
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J0 = "ABANDONNER";
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J0 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J0 = "ABANDONNER";
                     break;
                 case 1:
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J1 = DateTime.Now;
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J1 = "ABANDONNER";
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J1 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J1 = "ABANDONNER";
                     break;
                 case 2:
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J2 = DateTime.Now;
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J2 = "ABANDONNER";
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J2 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J2 = "ABANDONNER";
                     break;
                 case 3:
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J3 = DateTime.Now;
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J3 = "ABANDONNER";
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J3 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J3 = "ABANDONNER";
                     break;
                 case 4:
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J4 = DateTime.Now;
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J4 = "ABANDONNER";
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J4 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J4 = "ABANDONNER";
                     break;
                 case 5:
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J5 = DateTime.Now;
-                    TG.PA.Mains.ElementAt<Main>(idxMain).Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J5 = "ABANDONNER";
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J5 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J5 = "ABANDONNER";
                     break;
             }
             AppliqueDecision();
-            //TG.PA.Mains.ElementAt<Main>(1).Etapes.ElementAt<Etape>(1).ToursParole.ElementAt<TourParole>(1) = TP;
-            TG.NirvContext.SaveChanges();
-            MsgHistorique = TG.RecupHistoriquePartie();
-            TG.SRV.Incarne<IApplicationService>().ChangerVue(new TexasTable());
-            //PA.Joue("", "Texas");
         }
         //-------------------------------------------
         //	  
         //-------------------------------------------
         private void Suivre(object param)
         {
-            //TG.SRV.Incarne<iMains_EF_SRV>().RecupUneMain();
+            
+            int DeltaPoursuivre = TG.PA.MainCourante.NiveauPourSuivre - TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+            TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement = TG.PA.MainCourante.NiveauPourSuivre;
+            TG.PA.Joueurs[TG.PA.JoueurLogue].Capital -= DeltaPoursuivre;
 
 
-            //int DeltaPoursuivre = PA.NiveauPourSuivre - PA.Joueurs[PA.JoueurLogue].Engagement;
-            //PA.Joueurs[PA.JoueurLogue].Engagement = PA.NiveauPourSuivre;
-            //PA.Joueurs[PA.JoueurLogue].Capital -= DeltaPoursuivre;
+            if (TG.PA.Joueurs[TG.PA.JoueurLogue].Capital == 0)
+            {
+                TG.PA.Joueurs[TG.PA.JoueurLogue].Decision = "ALL_IN_SUIVRE";
+                TG.AjouteHistorique(TG.PA.Joueurs[TG.PA.JoueurLogue].NomJoueur + " Suit ALL IN");
+            }
+            else
+            {
+                TG.PA.Joueurs[TG.PA.JoueurLogue].Decision = "SUIVRE";
+                if (DeltaPoursuivre == 0)
+                    TG.AjouteHistorique(TG.PA.Joueurs[TG.PA.JoueurLogue].NomJoueur + " y va Gratos");
+                else
+                    TG.AjouteHistorique(TG.PA.Joueurs[TG.PA.JoueurLogue].NomJoueur + " Suit");
+            }
 
-            //Historique_EF_SRV hist_AS = new Historique_EF_SRV();
-            //if (PA.Joueurs[PA.JoueurLogue].Capital == 0)
-            //{
-            //    PA.Joueurs[PA.JoueurLogue].Decision = "ALL_IN_SUIVRE";
-            //    hist_AS.AjouteHistorique(PA.Joueurs[PA.JoueurLogue].Nom + " suit ALL IN");
-            //}
-            //else
-            //{
-            //    PA.Joueurs[PA.JoueurLogue].Decision = "SUIVRE";
-            //    if (DeltaPoursuivre == 0)
-            //       hist_AS.AjouteHistorique(PA.Joueurs[PA.JoueurLogue].Nom + " y va gratos");
-            //    else
-            //        hist_AS.AjouteHistorique(PA.Joueurs[PA.JoueurLogue].Nom + " suit");
-            //}
-            //AppliqueDecision();
+            int idxMain = TG.PA.NumMainCourante - 1;
+            int idxEtape = TG.GetIdxEtape();
+            
+            int idxTP = TG.PA.MainCourante.Etapes.ElementAt(idxEtape).NumTourCourant - 1;
+            
+            switch (TG.PA.JoueurLogue)
+            {
+                case 0:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J0 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J0 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J0 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 1:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J1 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J1 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J1 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 2:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J2 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J2 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J2 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 3:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J3 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J3 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J3 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 4:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J4 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J4 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J4 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 5:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J5 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J5 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J5 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+            }
+
+            AppliqueDecision();
         }
         //-------------------------------------------
         //	  
         //-------------------------------------------
         private void Relancer(object param)
         {
-            //TG.Relance = Convert.ToInt32(ValRelanceTxt);
-            //if (TG.Relance <= 0)
-            //    TG.Relance = 1;
+            int Relance = Convert.ToInt32(ValRelanceTxt);
 
-            //PA.Joueurs[PA.JoueurLogue].Capital -= (PA.NiveauPourSuivre - PA.Joueurs[PA.JoueurLogue].Engagement) + TG.Relance;
-            //PA.Joueurs[PA.JoueurLogue].Engagement = PA.NiveauPourSuivre + TG.Relance;
-            //PA.NiveauPourSuivre += TG.Relance;
+            TG.PA.Joueurs[TG.PA.JoueurLogue].Capital -= (TG.PA.MainCourante.NiveauPourSuivre - TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement) + Relance;
+            TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement = TG.PA.MainCourante.NiveauPourSuivre + Relance;
+            TG.PA.MainCourante.NiveauPourSuivre += Relance;
 
-            //Historique_EF_SRV hist_AS = new Historique_EF_SRV();
-            //if (PA.Joueurs[PA.JoueurLogue].Capital == 0)
-            //{
-            //    PA.Joueurs[PA.JoueurLogue].Decision = "ALL_IN_RELANCER";
-            //    hist_AS.AjouteHistorique(PA.Joueurs[PA.JoueurLogue].Nom + " relance ALL IN (" + TG.Relance + ")");
-            //}
-            //else
-            //{
-            //    PA.Joueurs[PA.JoueurLogue].Decision = "RELANCER";
-            //    hist_AS.AjouteHistorique(PA.Joueurs[PA.JoueurLogue].Nom + " relance de " + TG.Relance);
-            //}
-            //AppliqueDecision();
-            //PA.Joue("", "Texas");
+          
+
+            if (TG.PA.Joueurs[TG.PA.JoueurLogue].Capital == 0)
+            {
+                TG.PA.Joueurs[TG.PA.JoueurLogue].Decision = "ALL_IN_RELANCER";
+                TG.AjouteHistorique(TG.PA.Joueurs[TG.PA.JoueurLogue].NomJoueur + " relance ALL IN (" + Relance + ")");
+            }
+            else
+            {
+                TG.PA.Joueurs[TG.PA.JoueurLogue].Decision = "RELANCER";
+                TG.AjouteHistorique(TG.PA.Joueurs[TG.PA.JoueurLogue].NomJoueur + " relance de " + Relance);
+            }
+
+            int idxMain = TG.PA.NumMainCourante - 1;
+            int idxEtape = TG.GetIdxEtape();
+
+            int idxTP = TG.PA.MainCourante.Etapes.ElementAt(idxEtape).NumTourCourant - 1;
+
+            switch (TG.PA.JoueurLogue)
+            {
+                case 0:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J0 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J0 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J0 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 1:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J1 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J1 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J1 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+
+                    break;
+                case 2:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J2 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J2 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J2 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 3:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J3 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J3 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J3 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 4:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J4 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J4 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J4 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+                case 5:
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Date_J5 = DateTime.Now;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Dec_J5 = TG.PA.Joueurs[TG.PA.JoueurLogue].Decision;
+                    TG.PA.MainCourante.Etapes.ElementAt<Etape>(idxEtape).ToursParole.ElementAt<TourParole>(idxTP).Eng_J5 = TG.PA.Joueurs[TG.PA.JoueurLogue].Engagement;
+                    break;
+            }
+            AppliqueDecision();
         }
 
         /*--------------------------------------------------------------
@@ -484,7 +618,7 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             }
             else
             {
-                int prochainJoueur = TG.PA.Mains.ElementAt(0).Etapes.ElementAt(TG.GetIdxEtape()).ProchainJoueur;
+                int prochainJoueur = TG.PA.MainCourante.EtapeCourante.ProchainJoueur;
                 if (prochainJoueur < 0)
                 {
                     return;
@@ -494,8 +628,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
 
                 if (TG.PA.NomJoueurLogue.ToLower() == TG.PA.Joueurs[prochainJoueur].NomJoueur.ToLower())
                 {
-                    //Principale.ArreteDelaiRefresh();
-                    int implication = TG.PA.NiveauPourSuivre - TG.PA.Joueurs[prochainJoueur].Engagement;
+                    //Principale.Arre10teDelaiRefresh();
+                    int implication = TG.PA.MainCourante.NiveauPourSuivre - TG.PA.Joueurs[prochainJoueur].Engagement;
                     if (implication == 0)
                         TableCourante.bout_Suivre.Content = "GRATOS";
                     else
@@ -518,21 +652,21 @@ namespace PokerNirvana_MVVM_EF.ViewModel
         /---------------------------------------------------------------*/
         private void fixeRelance()
         {
-            //int RelanceMax = PA.CalculeRelanceMaximale();
+            int RelanceMax = TG.PA.CalculeRelanceMaximale();
 
-            //if (RelanceMax == 0)
-            //{
-            //    TableCourante.bout_Relancer.Visibility = Visibility.Collapsed;
-            //    TableCourante.CB_ValRelance.Visibility = Visibility.Collapsed;
-            //}
-            //else
-            //{
-            //    TableCourante.bout_Relancer.Visibility = Visibility.Visible;
-            //    TableCourante.CB_ValRelance.Visibility = Visibility.Visible;
-            //    for (int i = 1; i <= RelanceMax; i++)
-            //        TableCourante.CB_ValRelance.Items.Add(i);
-            //    TableCourante.CB_ValRelance.Text = "1";
-            //}
+            if (RelanceMax == 0)
+            {
+                TableCourante.bout_Relancer.Visibility = Visibility.Collapsed;
+                TableCourante.CB_ValRelance.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TableCourante.bout_Relancer.Visibility = Visibility.Visible;
+                TableCourante.CB_ValRelance.Visibility = Visibility.Visible;
+                for (int i = 1; i <= RelanceMax; i++)
+                    TableCourante.CB_ValRelance.Items.Add(i);
+                TableCourante.CB_ValRelance.Text = "1";
+            }
         }
 
         private void eteintJoueursInactifs()

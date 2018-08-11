@@ -40,6 +40,7 @@ namespace PokerNirvana_MVVM_EF.Model
            
             JoueurLogue = TG.PA.JoueurLogue;
             Etape = TG.PA.NomEtape;
+            ConstruireTabDecisionActive();
         }
 
         public Croupier(string[] TabDD, int[] TabE, int[] TaK, int DernierAAvoirParler, string etape, int bouton)

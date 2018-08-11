@@ -24,7 +24,8 @@ namespace PokerNirvana_MVVM_EF.ViewModel
         // Constructeur
        public CreerTournoisPartiesViewModel()
        {
-            Database.SetInitializer<NirvanaContext>(new DropCreateDatabaseAlways<NirvanaContext>());
+            // Le databse setinitializer est mtn dans trousse globale
+            //Database.SetInitializer<NirvanaContext>(new DropCreateDatabaseAlways<NirvanaContext>());
             ///// LINQ pour aller récupérer tous les joueurs du club
             var nirvCtxt = new NirvanaContext();
             var jReq = from r in (nirvCtxt.Joueurs) select r;
@@ -70,7 +71,7 @@ namespace PokerNirvana_MVVM_EF.ViewModel
             // LINQ pour recharger la Partie 
          TG.PA = (from p in (TG.NirvContext.Parties.Include("Mains.Etapes.ToursParole").Include("Joueurs")) where p.NumPartie == 1 select p).FirstOrDefault();
             
-         TG.PA.ProchainJoueur = TG.PA.Mains.ElementAt(TG.PA.NumMainCourante-1).Etapes.ElementAt(TG.GetIdxEtape()).ProchainJoueur;
+         TG.PA.ProchainJoueur = TG.PA.MainCourante.EtapeCourante.ProchainJoueur;
 
           TG.NirvContext.Historiques.Add(new Historique("Début de la partie " + TG.PA.NumPartie, TG.PA.NumPartie));
           TG.NirvContext.Historiques.Add(new Historique(TG.PA.Joueurs[0].NomJoueur + " distribue la main " + TG.PA.NumMainCourante, TG.PA.NumPartie));

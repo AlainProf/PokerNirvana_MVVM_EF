@@ -80,8 +80,21 @@ namespace PokerNirvana_MVVM_EF.Model
         Carte Turn;
         [NotMapped]
         Carte River;
+
+
+        private Etape etapeCourante;
         [NotMapped]
-        virtual public Etape EtapeCourante { get; set; }
+        virtual public Etape EtapeCourante
+        {
+            get
+            {
+                if (Etapes.Count == 0)
+                    return new Etape();
+                return Etapes.ElementAt(TG.GetIdxEtape());
+            }
+            set { etapeCourante = value; }
+        }
+   
 
         public Main()
         {
@@ -102,11 +115,11 @@ namespace PokerNirvana_MVVM_EF.Model
             Debut = DateTime.Now;
             NomEtapeCourante = "PRE_FLOP";
 
-            EtapeCourante = new Etape();
-            EtapeCourante.NouvelleEtape(NomEtapeCourante);
+            Etape uneEtape = new Etape(NomEtapeCourante);
+            
             //EtapeCourante.ProchainJoueur = TG.PA.ProchainJoueur;
-            Etapes.Add(EtapeCourante);
-            //NiveauPourSuivre = TG.PA.NiveauPourSuivre;
+            Etapes.Add(uneEtape);
+            NiveauPourSuivre = TG.PA.NiveauPourSuivre;
         }
 
         /*--------------------------------------------------------------

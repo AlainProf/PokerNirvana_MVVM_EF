@@ -50,8 +50,10 @@ namespace PokerNirvana_MVVM_EF.Model
 
         public TourParole()
         { }
-        public void NouveauTour(int numero)
+        public TourParole(int numero)
         {
+            NumPartie = TG.PA.NumPartie;
+            NumMain = TG.PA.NumMainCourante;
             NumTour = numero;
             NomEtape = TG.PA.NomEtape;
             Dec_J0 = TG.PA.Joueurs[0].Decision;

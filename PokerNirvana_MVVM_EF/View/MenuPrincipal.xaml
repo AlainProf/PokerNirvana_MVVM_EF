@@ -6,6 +6,7 @@
 
         <!--<Button Name="btnInfoMembre" Canvas.Top="0" Click="InformationMembre">Info membre</Button>
         <Button Name="btnConnexion" Canvas.Top="40" Click="Connexion">Connexion</Button>-->
+        <Button Name="btnCreationPartieSixJoueurs" Canvas.Top="60" Click="CreationPartieSixJoueurs">Création partie 1 avec 6 joueurs </Button>
         <Button Name="btnCreationBDParEntity" Canvas.Top="80" Click="CreationBDParEntity">Insère 6 joueurs (EF)</Button>
         <Button Name="btnCreationTournoisParties" Canvas.Top="120" Click="CreationTournoisParties">Création d'une partie (attention ne crée pas les joueurs)</Button>
         <Button Name="btnChargerPartie1" Canvas.Top="160" Click="ChargerPartie1">Chargement Partie 1</Button>
@@ -14,7 +15,7 @@
         <!--<Button Name="btnJouer" Canvas.Top="200" Click="Jouer">Jouer</Button>
         <Button Name="btnPartieEnCours" Canvas.Top="240" Click="PartieEnCours">Partie et tournois en cours</Button>-->
         <!--<Button Name="btnPreparerBD" Canvas.Top="280" Click="PrepareBD">3 joueurs 2 all in</Button>-->
-        <Button Name="btnTruncatePrim" Canvas.Top="320" Click="TruncatePrimitif">Vider Primitif BD</Button>
-        <Button Name="btnTruncate" Canvas.Top="360" Click="Truncate">Vider BD</Button>
+        <Button Name="btnTruncatePrim" Canvas.Top="320" Click="TruncatePrimitif">Vider BD en respectant les FK constraint (conserve les joueurs)</Button>
+        <Button Name="btnTruncate" Canvas.Top="360" Click="Truncate">Truncate direct des tables (sauf Joueurs)</Button>
     </Canvas>
 </UserControl>

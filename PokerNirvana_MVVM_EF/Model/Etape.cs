@@ -32,10 +32,9 @@ namespace PokerNirvana_MVVM_EF.Model
 
         public Etape()
         {
-            //ToursParole = new List<TourParole>();
         }
 
-        public void NouvelleEtape(string nom)
+        public Etape(string nom)
         {
             ToursParole = new List<TourParole>();
             NomEtape = nom;
@@ -60,10 +59,11 @@ namespace PokerNirvana_MVVM_EF.Model
             //ProchainJoueur = TG.PA.ProchainJoueur;
             //TG.PA.ProchainJoueur = TG.PA.zeCroupier.DetermineProchainJoueur("NOUVELLE_MAIN");
             
-            TourCourant = new TourParole();
-            TourCourant.NouveauTour(NumTourCourant);
+            TourCourant = new TourParole(NumTourCourant);
+            
             ToursParole.Add(TourCourant);
         }
+
         /**************************************
         *
         **************************************/
